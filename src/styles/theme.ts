@@ -5,7 +5,7 @@ export const theme = {
   hoverTransition: "all 150ms",
   maxWidth: 644,
   palette: {
-    background: "#060b19",
+    background: "#000d16",
     black: "#0a0b0d",
     error: {
       light: "rgba(232,67,12,0.1)",
@@ -13,13 +13,13 @@ export const theme = {
     },
     grey: {
       dark: "#78798d",
-      light: "#000000",
+      light: "#001929",
       main: "#e2e5ee",
       veryDark: "#363740",
     },
     primary: {
       dark: "#5a1cc3",
-      main: "#004fff",
+      main: "#0071bc",
     },
     success: {
       light: "rgba(0,255,0,0.1)",

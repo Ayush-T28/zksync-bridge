@@ -39,7 +39,6 @@ export const useLoginStyles = createUseStyles((theme: Theme) => ({
     padding: [0, theme.spacing(2)],
   },
   logo: {
-    height: 120,
     marginBottom: theme.spacing(3),
     marginTop: theme.spacing(8),
   },
