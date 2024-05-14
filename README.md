@@ -1,93 +1,87 @@
-# Bridge
+# zkEVM Bridge UI
 
+The zkEVM Bridge UI provides a simple user interface to bridge ETH and your favorite ERC-20 tokens
+from Ethereum to the Polygon zkEVM and back.
 
+## Development
 
-## Getting started
+Clone the repo:
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://code.zeeve.net/zeeve-platform/tracehawk/momento-blockchain/bridge.git
-git branch -M master
-git push -uf origin master
+```sh
+git clone git@github.com:0xPolygonHermez/zkevm-bridge-ui.git
 ```
 
-## Integrate with your tools
+Move into the project directory:
 
-- [ ] [Set up project integrations](https://code.zeeve.net/zeeve-platform/tracehawk/momento-blockchain/bridge/-/settings/integrations)
+```sh
+cd zkevm-bridge-ui
+```
 
-## Collaborate with your team
+Install project dependencies:
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+```sh
+npm install
+```
 
-## Test and Deploy
+Finally, to be able to run the project, you need to create a `.env` file which should contain all
+the required environment variables.
 
-Use the built-in continuous integration in GitLab.
+If you want to create it from scratch, you can copy the `.env.example` and then override each
+environment variable by your own:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+```sh
+cp .env.example .env
+```
 
-***
+If you want to see token prices converted to your local fiat currency in the UI you'll need to
+register [here](https://exchangeratesapi.io) to obtain an API Key. Once you get it, you need to set
+the `VITE_ENABLE_FIAT_EXCHANGE_RATES` env var to `true` and fill this required env vars as well:
 
-# Editing this README
+- `VITE_FIAT_EXCHANGE_RATES_API_URL`
+- `VITE_FIAT_EXCHANGE_RATES_API_KEY`
+- `VITE_FIAT_EXCHANGE_RATES_ETHEREUM_USDC_ADDRESS`
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+If you just want to omit fiat conversion you can just disable this feature by setting the
+`VITE_ENABLE_FIAT_EXCHANGE_RATES` env var to `false`.
 
-## Suggestions for a good README
+Finally, to run the UI in development mode, you just need to run:
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```sh
+npm run dev
+```
 
-## Name
-Choose a self-explaining name for your project.
+## Docker image
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+A [GitHub action](.github/workflows/push-docker-develop.yml) is already configured to automatically
+generate and push images to DockerHub on updates to the **develop** and **main** branches.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+To locally generate a Docker image of the zkEVM Bridge UI, you can just run the following command:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+```sh
+docker build . -t zkevm-bridge-ui:local
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+The Docker image won't build the UI until you run it, in order to be able to use dynamic environment
+variables and facilitate the deployment process. The env vars that you need to pass to the
+`docker run` cmd are the same as those in the `.env.example` file but without the `VITE` prefix.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Example:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```sh
+docker run \
+-e ETHEREUM_RPC_URL=http://localhost:8545 \
+-e ETHEREUM_EXPLORER_URL=https://goerli.etherscan.io \
+-e ETHEREUM_BRIDGE_CONTRACT_ADDRESS=0x0165878A594ca255338adfa4d48449f69242Eb8F \
+-e ETHEREUM_FORCE_UPDATE_GLOBAL_EXIT_ROOT=true \
+-e ETHEREUM_PROOF_OF_EFFICIENCY_CONTRACT_ADDRESS=0x8dA3b8020401851438eEe8bB434c57b54999935c \
+-e POLYGON_ZK_EVM_RPC_URL=http://localhost:8123 \
+-e POLYGON_ZK_EVM_EXPLORER_URL=http://localhost:4000 \
+-e POLYGON_ZK_EVM_BRIDGE_CONTRACT_ADDRESS=0x9d98deabc42dd696deb9e40b4f1cab7ddbf55988 \
+-e POLYGON_ZK_EVM_NETWORK_ID=1 \
+-e BRIDGE_API_URL=http://localhost:8080 \
+-e ENABLE_FIAT_EXCHANGE_RATES=false \
+-e ENABLE_OUTDATED_NETWORK_MODAL=false \
+-e ENABLE_DEPOSIT_WARNING=true \
+-e ENABLE_REPORT_FORM=false \
+-p 8080:80 zkevm-bridge-ui:local
+```
