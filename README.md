@@ -1,87 +1,106 @@
-# zkEVM Bridge UI
+![zkSync Portal](public/preview.png)
 
-The zkEVM Bridge UI provides a simple user interface to bridge ETH and your favorite ERC-20 tokens
-from Ethereum to the Polygon zkEVM and back.
+# zkSync Portal 🚀
 
-## Development
+**zkSync Portal** is a state-of-the-art dapp, merging the power of bridge, tokens manager and transaction history into one user-friendly interface. Designed with a stress on effortless user experience, it simplifies token management, making it your premier interface for interacting with both zkSync versions - every interaction smooth and efficient.
 
-Clone the repo:
+## ✨ Features
 
-```sh
-git clone git@github.com:0xPolygonHermez/zkevm-bridge-ui.git
+- 🖥️ Intuitive interface for managing, sending, and bridging zkSync Era.
+- 📇 Ability to add contacts for quick and easy access.
+- 🔧 Effortless setup and connection to local zkSync nodes or ZK Stack Hyperchains.
+
+## 🎉 Try it out!
+
+- 🌐 Dive in now at [portal.zksync.io](https://portal.zksync.io/).
+
+---
+
+## 🌍 Connecting to local node
+
+Harness the Portal's power to connect to your [local zkSync Era node](https://era.zksync.io/docs/tools/testing/).
+
+**Prerequisites:** Node.js version 16+, npm version 7+
+
+1. 📚 Follow the [documentation](https://era.zksync.io/docs/tools/testing/) for setting up either an **in-memory node** or **dockerized local setup**.
+2. 🔄 Clone the Portal repository and set it up:
+    ```bash
+    git clone https://github.com/matter-labs/dapp-portal.git
+    cd dapp-portal
+    npm install
+    ```
+3. 🛠️ Modify the default network settings in `data/networks.ts` if your network ID, RPC URL, or other info differs. Customize displayed tokens there if needed.
+    - Alternatively, use the [configuration form](./hyperchains/README.md#configure-automatically-with-form) for guided config setup.
+4. 🔥 Launch the dev server:
+    - For in-memory node:
+      ```bash
+      npm run dev:node:memory
+      ```
+    - For dockerized setup:
+      ```bash
+      npm run dev:node:docker
+      ```
+  Navigate to the displayed Portal URL (typically http://localhost:3000).
+
+---
+
+## 🔗 Connecting to Hyperchain
+
+To use Portal with your ZK Stack Hyperchain, see the guide [here](./hyperchains/README.md).
+
+---
+
+## 🛠 Development
+
+### Advanced configuration
+
+#### L1 Balances:
+By default, L1 balances are fetched via a public RPC. For faster loading speeds and reduced load on your L1 RPC provider, consider using [Ankr's RPC service](https://www.ankr.com/rpc/). Obtain an Ankr token and update the `.env` file:
+```bash
+ANKR_TOKEN=your_ankr_token_here
 ```
 
-Move into the project directory:
-
-```sh
-cd zkevm-bridge-ui
+#### Wallet Connect Project Setup:
+Before deploying your own version of the Portal, ensure you create your own Wallet Connect project on [walletconnect.com](https://walletconnect.com). After creating the project, update the project ID in the `.env` file:
+```bash
+WALLET_CONNECT_PROJECT_ID=your_project_id_here
 ```
 
-Install project dependencies:
 
-```sh
+### 🔧 Setup
+
+Ensure you've installed the necessary dependencies:
+
+```bash
 npm install
 ```
 
-Finally, to be able to run the project, you need to create a `.env` file which should contain all
-the required environment variables.
+### 🌐 Development Server
 
-If you want to create it from scratch, you can copy the `.env.example` and then override each
-environment variable by your own:
+Activate the dev server at http://localhost:3000:
 
-```sh
-cp .env.example .env
-```
-
-If you want to see token prices converted to your local fiat currency in the UI you'll need to
-register [here](https://exchangeratesapi.io) to obtain an API Key. Once you get it, you need to set
-the `VITE_ENABLE_FIAT_EXCHANGE_RATES` env var to `true` and fill this required env vars as well:
-
-- `VITE_FIAT_EXCHANGE_RATES_API_URL`
-- `VITE_FIAT_EXCHANGE_RATES_API_KEY`
-- `VITE_FIAT_EXCHANGE_RATES_ETHEREUM_USDC_ADDRESS`
-
-If you just want to omit fiat conversion you can just disable this feature by setting the
-`VITE_ENABLE_FIAT_EXCHANGE_RATES` env var to `false`.
-
-Finally, to run the UI in development mode, you just need to run:
-
-```sh
+```bash
 npm run dev
 ```
 
-## Docker image
+### 🏭 Production
 
-A [GitHub action](.github/workflows/push-docker-develop.yml) is already configured to automatically
-generate and push images to DockerHub on updates to the **develop** and **main** branches.
+Compile for production:
 
-To locally generate a Docker image of the zkEVM Bridge UI, you can just run the following command:
-
-```sh
-docker build . -t zkevm-bridge-ui:local
+```bash
+npm run generate
 ```
 
-The Docker image won't build the UI until you run it, in order to be able to use dynamic environment
-variables and facilitate the deployment process. The env vars that you need to pass to the
-`docker run` cmd are the same as those in the `.env.example` file but without the `VITE` prefix.
+📘 Familiarize yourself with the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) for a deeper dive.
 
-Example:
+---
 
-```sh
-docker run \
--e ETHEREUM_RPC_URL=http://localhost:8545 \
--e ETHEREUM_EXPLORER_URL=https://goerli.etherscan.io \
--e ETHEREUM_BRIDGE_CONTRACT_ADDRESS=0x0165878A594ca255338adfa4d48449f69242Eb8F \
--e ETHEREUM_FORCE_UPDATE_GLOBAL_EXIT_ROOT=true \
--e ETHEREUM_PROOF_OF_EFFICIENCY_CONTRACT_ADDRESS=0x8dA3b8020401851438eEe8bB434c57b54999935c \
--e POLYGON_ZK_EVM_RPC_URL=http://localhost:8123 \
--e POLYGON_ZK_EVM_EXPLORER_URL=http://localhost:4000 \
--e POLYGON_ZK_EVM_BRIDGE_CONTRACT_ADDRESS=0x9d98deabc42dd696deb9e40b4f1cab7ddbf55988 \
--e POLYGON_ZK_EVM_NETWORK_ID=1 \
--e BRIDGE_API_URL=http://localhost:8080 \
--e ENABLE_FIAT_EXCHANGE_RATES=false \
--e ENABLE_OUTDATED_NETWORK_MODAL=false \
--e ENABLE_DEPOSIT_WARNING=true \
--e ENABLE_REPORT_FORM=false \
--p 8080:80 zkevm-bridge-ui:local
-```
+## 🤝 Contributing
+
+Open arms for contributions! Enhance our code and send your pull request [here](https://github.com/matter-labs/dapp-portal/pulls).
+
+---
+
+## 📜 License
+
+Proudly under the [MIT License](https://github.com/matter-labs/dapp-portal/blob/main/LICENSE).
