@@ -29,6 +29,12 @@ const createEraChain = (network: ZkSyncNetwork) => {
       default: { http: [network.rpcUrl] },
       public: { http: [network.rpcUrl] },
     },
+    blockExplorers: {
+      default: {
+        name: network.name,
+        url: network.blockExplorerUrl ?? "",
+      },
+    },
   };
 };
 const getAllChains = () => {
