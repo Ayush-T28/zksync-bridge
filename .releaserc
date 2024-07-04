@@ -1,0 +1,54 @@
+{
+  "branches": [
+    "+([0-9])?(.{+([0-9]),x}).x",
+    "main",
+    "next",
+    "next-major",
+    {
+      "name": "beta",
+      "prerelease": true
+    },
+    {
+      "name": "alpha",
+      "prerelease": true
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "VITE_VERSION=${nextRelease.version} sh scripts/create-release-assets.sh",
+        "publishCmd": "zip -r dist.zip dist && zip -r dist-node-memory.zip dist-node-memory && zip -r dist-node-docker.zip dist-node-docker",
+        "successCmd": "echo '::set-output name=releaseVersion::${nextRelease.version}'"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "dist.zip",
+            "label": "Dist package"
+          },
+          {
+            "path": "dist-node-memory.zip",
+            "label": "In-memory node dist package"
+          },
+          {
+            "path": "dist-node-docker.zip",
+            "label": "Dockerized node dist package"
+          }
+        ]
+      }
+    ]
+  ]
+}

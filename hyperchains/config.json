@@ -1,0 +1,28 @@
+[
+  {
+    "network": {
+      "id": 565,
+      "name": "chain0",
+      "key": "chain0",
+      "rpcUrl": "http://46.165.192.47:3050/",
+      "blockExplorerUrl": "",
+      "blockExplorerApi": "",
+      "publicL1NetworkId": 11155111
+    },
+    "tokens": [
+ {
+        "address": "0x000000000000000000000000000000000000800A",
+        "l1Address": "0xb79A7387B9D73b18Af7E3caff7CC392bd0Dac089",
+        "symbol": "PYRE", 
+        "decimals": 18,
+        "iconUrl": "/img/eth.svg"
+      },
+      {
+        "address": "0x000000000000000000000000000000000000800E",
+        "l1Address": "0x0000000000000000000000000000000000000000",
+        "symbol": "ETH",
+        "decimals": 18,
+        "iconUrl": "/img/eth.svg"
+      }]
+  }
+]
