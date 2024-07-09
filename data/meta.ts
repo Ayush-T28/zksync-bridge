@@ -1,18 +1,18 @@
 export const portal = {
-  title: "Memento Portal | View balances, transfer and bridge tokens",
+  title: "Prometheuz Portal | View balances, transfer and bridge tokens",
   description:
-    "Memento Portal allows you to view your balances, transfer tokens and bridge assets between Memento and Ethereum",
+    "Prometheuz Portal allows you to view your balances, transfer tokens and bridge assets between Prometheuz and Ethereum",
   previewImg: {
-    src: "https://mementoblockchain.com/wp-content/uploads/2022/08/Logo-reverse@2x.png",
-    alt: "Memento Portal",
+    src: "https://f005.backblazeb2.com/file/tracehawk-prod/logo/Altava/Light.png",
+    alt: "Prometheuz Portal",
   },
 };
 export const bridge = {
-  title: "Memento Bridge | Transfer funds between Memento and Ethereum",
+  title: "Prometheuz Bridge | Transfer funds between Prometheuz and Ethereum",
   description:
-    "With the Memento Bridge you can easily deposit tokens to Memento. Enjoy faster, cheaper and more efficient transactions.",
+    "With the Prometheuz Bridge you can easily deposit tokens to Prometheuz. Enjoy faster, cheaper and more efficient transactions.",
   previewImg: {
-    src: "https://mementoblockchain.com/wp-content/uploads/2022/08/Logo-reverse@2x.png",
-    alt: "Memento Bridge",
+    src: "https://f005.backblazeb2.com/file/tracehawk-prod/logo/Altava/Light.png",
+    alt: "Prometheuz Bridge",
   },
 };

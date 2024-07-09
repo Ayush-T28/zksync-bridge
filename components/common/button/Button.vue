@@ -61,11 +61,11 @@ defineProps({
       }
     }
     &primary {
-      @apply bg-primary-400 px-6 text-white;
+      @apply bg-[#000000] px-6 text-white dark:bg-[#ffffff] dark:text-black;
       &:enabled,
       &:is(a, label) {
         &:not([aria-disabled="true"]) {
-          @apply hover:bg-primary-300;
+          @apply hover:bg-neutral-300;
         }
       }
       &:disabled,
