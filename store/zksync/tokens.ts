@@ -1,8 +1,6 @@
-import { $fetch } from "ofetch";
-
 import { customBridgeTokens } from "@/data/customBridgeTokens";
 
-import type { Api, Token } from "@/types";
+import type { Token } from "@/types";
 
 export const useZkSyncTokensStore = defineStore("zkSyncTokens", () => {
   const providerStore = useZkSyncProviderStore();

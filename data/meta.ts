@@ -1,18 +1,18 @@
 export const portal = {
-  title: "zkSync Portal | View balances, transfer and bridge tokens",
+  title: "Prometheuz Portal | View balances, transfer and bridge tokens",
   description:
-    "zkSync Portal allows you to view your balances, transfer tokens and bridge assets between zkSync and Ethereum",
+    "Prometheuz Portal allows you to view your balances, transfer tokens and bridge assets between Prometheuz and Ethereum",
   previewImg: {
-    src: "https://portal.zksync.io/preview.png",
-    alt: "zkSync Portal",
+    src: "https://f005.backblazeb2.com/file/tracehawk-prod/logo/Altava/Light.png",
+    alt: "Prometheuz Portal",
   },
 };
 export const bridge = {
-  title: "zkSync Bridge | Transfer funds between zkSync and Ethereum",
+  title: "Prometheuz Bridge | Transfer funds between Prometheuz and Ethereum",
   description:
-    "With the zkSync Bridge you can easily deposit tokens to zkSync. Enjoy faster, cheaper and more efficient transactions with the future proof zkEVM scaling Ethereum's security and values.",
+    "With the Prometheuz Bridge you can easily deposit tokens to Prometheuz. Enjoy faster, cheaper and more efficient transactions.",
   previewImg: {
-    src: "https://portal.zksync.io/preview.png",
-    alt: "zkSync Bridge",
+    src: "https://f005.backblazeb2.com/file/tracehawk-prod/logo/Altava/Light.png",
+    alt: "Prometheuz Bridge",
   },
 };
