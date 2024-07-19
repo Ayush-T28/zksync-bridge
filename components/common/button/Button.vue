@@ -65,7 +65,7 @@ defineProps({
       &:enabled,
       &:is(a, label) {
         &:not([aria-disabled="true"]) {
-          @apply hover:bg-neutral-300;
+          @apply hover:bg-[#d9c6a5];
         }
       }
       &:disabled,

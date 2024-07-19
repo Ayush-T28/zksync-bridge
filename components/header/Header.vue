@@ -5,7 +5,16 @@
 
     <div class="logo-container">
       <NuxtLink :to="{ name: 'bridge' }">
-        <IconsZkSync class="logo-icon" />
+        <img
+          v-if="selectedColorMode === 'dark'"
+          src="https://fushuma.com/wp-content/uploads/sites/2/2024/06/Fushuma-Logo-Standard-White.png"
+          class="logo-icon"
+        />
+        <img
+          v-else
+          src="https://fushuma.com/wp-content/uploads/sites/2/2024/06/Fushuma-Logo-Retina.png"
+          class="logo-icon"
+        />
       </NuxtLink>
       <span class="beta-label">Beta</span>
     </div>
