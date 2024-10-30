@@ -12,6 +12,13 @@ export default defineNuxtConfig({
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
         },
+        {
+          rel: "icon",
+          type: "image/png",
+          href:
+            process.env.NUXT_PUBLIC_APP_LOGO_URL ||
+            "https://f005.backblazeb2.com/file/tracehawk-prod/logo/Zeeve/Dark.png",
+        },
       ],
       meta: [
         {
