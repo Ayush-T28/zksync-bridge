@@ -49,7 +49,9 @@ export default defineNuxtConfig({
       ],
     },
   },
-  plugins: [],
+  plugins: [
+    "~/plugins/config.js", // Register the config plugin
+  ],
   modules: [
     "@kevinmarrec/nuxt-pwa",
     "@pinia/nuxt", // https://pinia.vuejs.org/ssr/nuxt.html
@@ -94,4 +96,17 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      appTitle: process.env.NUXT_PUBLIC_APP_TITLE || "Bridge",
+      appDesciption:
+        process.env.NUXT_PUBLIC_APP_DESCRIPTION ||
+        "With the Zeeve Bridge you can easily deposit tokens to Zeeve. Enjoy faster, cheaper and more efficient transactions.",
+      appLogoUrl:
+        process.env.NUXT_PUBLIC_APP_LOGO_URL || "https://f005.backblazeb2.com/file/tracehawk-prod/logo/Zeeve/Dark.png",
+      appTheme: process.env.NUXT_PUBLIC_APP_THEME || "light",
+      appName: process.env.NUXT_PUBLIC_APP_NAME || "Zeeve Bridge",
+      appCustomization: process.env.NUXT_PUBLIC_APP_CUSTOMIZATION || "{}",
+    },
+  },
 });
