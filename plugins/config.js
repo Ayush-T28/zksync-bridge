@@ -5,7 +5,10 @@ const loadConfig = () => {
 
   let customization = {};
   try {
-    customization = JSON.parse($config.appCustomization || "{}");
+    // Directly assign the object if it's already an object
+    customization = typeof $config.appCustomization === "string"
+      ? JSON.parse($config.appCustomization)
+      : $config.appCustomization || {};
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("Failed to parse appCustomization:", error);
